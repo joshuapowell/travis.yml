@@ -9,7 +9,8 @@ cache:
   directories:
     - node_modules
 install:
-  - pip install -r ./requirements/development.txt
+  - if [ "$TRAVIS_BRANCH" = "stage" ]; then pip install -r ./requirements/development.txt; fi
+  - if [ "$TRAVIS_BRANCH" = "master" ]; then pip install -r ./requirements/production.txt; fi
   - npm install
 os:
   - linux
